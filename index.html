@@ -66,15 +66,23 @@
 </head>
 <body>
     <h1>AKSHAY JANGID</h1>
-    <form action="get_input.php" method="post">
+    <form action="" method="post">
         <input type="text" name="input_value" placeholder="Enter a value">
         <button type="submit">Submit</button>
     </form>
-    <?php if (isset($output)): ?>
-    <div class="output">
-        <span>Output:</span>
-        <?php echo nl2br(htmlspecialchars($output)); ?>
-    </div>
-    <?php endif; ?>
+    <?php 
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $input_value = $_POST['input_value'];
+        $output = shell_exec("your_c++_exe $input_value");
+        if (!empty($output)) {
+            ?>
+            <div class="output">
+                <span>Output:</span>
+                <?php echo nl2br(htmlspecialchars($output)); ?>
+            </div>
+            <?php
+        }
+    }
+    ?>
 </body>
 </html>
