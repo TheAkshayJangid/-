@@ -1,7 +1,16 @@
+<?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $whatsapp_link = "https://wa.me/";
+    $mobile_number = $_POST['mobile_number'];
+    $whatsapp_link .= $mobile_number;
+    echo "Your WhatsApp link is: " . $whatsapp_link;
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>THE AKSHAY JANGID</title>
+    <title>Generate WhatsApp Link</title>
     <style>
         body {
             background-color: #f5f5f5;
@@ -51,38 +60,13 @@
             cursor: pointer;
             box-shadow: 0 0 10px dodgerblue;
         }
-        .output {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 50px;
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .output span {
-            color: dodgerblue;
-        }
     </style>
 </head>
 <body>
-    <h1>AKSHAY JANGID</h1>
-    <form action="" method="post">
-        <input type="text" name="input_value" placeholder="Enter a value">
-        <button type="submit">Submit</button>
+    <h1>Generate WhatsApp Link</h1>
+    <form method="post">
+        <input type="text" name="mobile_number" placeholder="Enter your mobile number">
+        <button type="submit">Generate Link</button>
     </form>
-    <?php 
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $input_value = $_POST['input_value'];
-        $output = shell_exec("whatsapp.exe $input_value");
-        if (!empty($output)) {
-            ?>
-            <div class="output">
-                <span>Output:</span>
-                <?php echo nl2br(htmlspecialchars($output)); ?>
-            </div>
-            <?php
-        }
-    }
-    ?>
 </body>
 </html>
