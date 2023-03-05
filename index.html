@@ -73,7 +73,7 @@
     <?php 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $input_value = $_POST['input_value'];
-        $output = shell_exec("your_c++_exe $input_value");
+        $output = shell_exec("whatsapp.exe $input_value");
         if (!empty($output)) {
             ?>
             <div class="output">
